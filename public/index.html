@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cày tương tác miễn phí | KHANHPC</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="GD.png">
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-white font-sans leading-normal tracking-normal">
+  <div class="max-w-5xl mx-auto mt-10 p-8 bg-white rounded-2xl shadow-xl border border-gray-200">
+    <h1 class="text-4xl font-extrabold mb-8 text-center text-blue-700 drop-shadow-sm">🚀 Cày tương tác miễn phí | KHANHPC</h1>
+
+    <!-- Thông báo cảnh báo -->
+<div class="mb-8 p-5 border-l-4 border-yellow-500 bg-yellow-100 text-yellow-800 rounded-lg shadow-sm">
+  <strong class="block text-lg mb-1">⚠️ Khuyến cáo:</strong>
+  Vui lòng sử dụng máy có cấu hình mạnh khi chạy nhiều bot cùng lúc.
+  <ul class="mt-3 list-disc list-inside text-sm space-y-1">
+    <li>Đảm bảo hiệu suất mượt mà, tránh giật lag, crash trình duyệt.</li>
+    <li>CPU yếu dễ dẫn đến treo máy, gây ảnh hưởng toàn bộ hệ thống.</li>
+    <li>RAM và VGA thấp sẽ khiến việc mở nhiều trình duyệt trở nên chậm và không ổn định.</li>
+    <li>Nên tắt các ứng dụng không cần thiết khi chạy bot.</li>
+    <li><strong>Lưu ý:</strong> KHÔNG CHỊU TRÁCH NHIỆM cho việc tự ý làm quá tải, làm hư máy hoặc bị khóa tài khoản do cày quá mức.</li>
+  </ul>
+</div>
+
+
+    <!-- Form điều khiển -->
+    <form id="botForm" method="POST" action="/start" class="space-y-6">
+      <div>
+        <label for="url" class="block font-semibold text-gray-800 mb-1">🔗 Link cần cày:</label>
+        <input type="url" id="url" name="url"
+               required
+               class="w-full border px-4 py-2 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-50 placeholder-transparent" />
+      </div>
+
+      <div>
+        <label for="count" class="block font-semibold text-gray-800 mb-1">🤖 Số bot cày (cửa sổ):</label>
+        <input type="number" id="count" name="count" min="1" max="20" value="3"
+               required class="w-full border px-4 py-2 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-50" />
+      </div>
+
+      <div>
+        <label for="layout" class="block font-semibold text-gray-800 mb-1">🧩 Cách xếp cửa sổ:</label>
+        <select id="layout" name="layout" required
+                class="w-full border px-4 py-2 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-50">
+          <option value="grid" selected>Xếp dạng lưới (Grid)</option>
+          <option value="cascade">Xếp chồng (Cascade)</option>
+        </select>
+      </div>
+
+      <button type="submit"
+              class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+        🚀 Bắt đầu cày
+      </button>
+    </form>
+
+    <!-- Trạng thái bot -->
+    <div id="statusContainer" class="mt-10">
+      <h2 class="text-xl font-bold mb-3 text-green-700">📊 Trạng thái Bot</h2>
+      <ul id="statusList" class="bg-gray-50 border rounded-md p-4 space-y-2 text-sm text-gray-700"></ul>
+    </div>
+
+    <!-- Cấu hình gợi ý -->
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold mb-4 text-purple-700">🧠 Gợi ý cấu hình PC theo số lượng Bot</h2>
+      <div class="overflow-x-auto rounded-lg border border-gray-200">
+        <table id="configTable" class="min-w-full text-sm text-left">
+                    <table id="configTable" class="min-w-full text-left text-sm text-gray-700">
+          <thead class="bg-purple-100 text-purple-800 uppercase sticky top-0">
+            <tr>
+              <th scope="col" class="px-6 py-4 border border-purple-200 text-center">Số bot</th>
+              <th scope="col" class="px-6 py-4 border border-purple-200">CPU</th>
+              <th scope="col" class="px-6 py-4 border border-purple-200 text-center">RAM</th>
+              <th scope="col" class="px-6 py-4 border border-purple-200">VGA</th>
+            </tr>
+          </thead>
+<tbody class="bg-white divide-y divide-gray-200">
+  <tr data-bot="1" class="hover:bg-blue-50 cursor-pointer">
+    <td class="px-4 py-2 text-center border">1</td>
+    <td class="px-4 py-2 border">Intel i3 Gen 8+ / Ryzen 3</td>
+    <td class="px-4 py-2 border">4 GB</td>
+    <td class="px-4 py-2 border">UHD 620 / Vega 3</td>
+  </tr>
+  <tr data-bot="3" class="hover:bg-blue-50 cursor-pointer">
+    <td class="px-4 py-2 text-center border">2 - 3</td>
+    <td class="px-4 py-2 border">Intel i5 Gen 9+ / Ryzen 5</td>
+    <td class="px-4 py-2 border">8 GB</td>
+    <td class="px-4 py-2 border">GTX 1050 / RX 560</td>
+  </tr>
+  <tr data-bot="6" class="hover:bg-blue-50 cursor-pointer">
+    <td class="px-4 py-2 text-center border">4 - 6</td>
+    <td class="px-4 py-2 border">Intel i7 Gen 10+ / Ryzen 7</td>
+    <td class="px-4 py-2 border">16 GB</td>
+    <td class="px-4 py-2 border">GTX 1660 / RX 580</td>
+  </tr>
+  <tr data-bot="10" class="hover:bg-blue-50 cursor-pointer">
+    <td class="px-4 py-2 text-center border">7 - 10</td>
+    <td class="px-4 py-2 border">Intel i9 Gen 11+ / Ryzen 9</td>
+    <td class="px-4 py-2 border">32 GB</td>
+    <td class="px-4 py-2 border">RTX 2060 / RX 6700</td>
+  </tr>
+  <tr data-bot="15" class="hover:bg-blue-50 cursor-pointer">
+    <td class="px-4 py-2 text-center border">11 - 15</td>
+    <td class="px-4 py-2 border">Intel Xeon / Threadripper</td>
+    <td class="px-4 py-2 border">64 GB</td>
+    <td class="px-4 py-2 border">RTX 3080 / RX 6800 XT</td>
+  </tr>
+  <tr data-bot="20" class="hover:bg-blue-50 cursor-pointer">
+    <td class="px-4 py-2 text-center border">16 - 20</td>
+    <td class="px-4 py-2 border">Dual Xeon / Threadripper Pro</td>
+    <td class="px-4 py-2 border">128 GB+</td>
+    <td class="px-4 py-2 border">RTX 4090 / Quadro RTX</td>
+  </tr>
+  <tr data-bot="25" class="hover:bg-blue-50 cursor-pointer">
+    <td class="px-4 py-2 text-center border">21 - 25</td>
+    <td class="px-4 py-2 border">Intel W9 / AMD Epyc</td>
+    <td class="px-4 py-2 border">192 GB</td>
+    <td class="px-4 py-2 border">RTX 6000 Ada</td>
+  </tr>
+  <tr data-bot="30" class="hover:bg-blue-50 cursor-pointer">
+    <td class="px-4 py-2 text-center border">26 - 30</td>
+    <td class="px-4 py-2 border">Dual Epyc / Xeon Platinum</td>
+    <td class="px-4 py-2 border">256 GB</td>
+    <td class="px-4 py-2 border">Quadro RTX 8000</td>
+  </tr>
+  <tr data-bot="40" class="hover:bg-blue-50 cursor-pointer">
+    <td class="px-4 py-2 text-center border">31 - 40</td>
+    <td class="px-4 py-2 border">Cloud Server / Farm</td>
+    <td class="px-4 py-2 border">512 GB+</td>
+    <td class="px-4 py-2 border">Multi-GPU Cluster</td>
+  </tr>
+  <!-- Tăng dần với từng nhóm 50 bot -->
+  <tr data-bot="50" class="hover:bg-blue-50 cursor-pointer">
+    <td class="px-4 py-2 text-center border">41 - 50</td>
+    <td class="px-4 py-2 border">Cloud Server High-End</td>
+    <td class="px-4 py-2 border">1 TB</td>
+    <td class="px-4 py-2 border">Multi-GPU (8x RTX 4090)</td>
+  </tr>
+  <tr data-bot="100" class="hover:bg-blue-50 cursor-pointer">
+    <td class="px-4 py-2 text-center border">51 - 100</td>
+    <td class="px-4 py-2 border">Data Center Xeon Scalable</td>
+    <td class="px-4 py-2 border">2 TB</td>
+    <td class="px-4 py-2 border">Multi-GPU Cluster (NVIDIA A100)</td>
+  </tr>
+  <tr data-bot="200" class="hover:bg-blue-50 cursor-pointer">
+    <td class="px-4 py-2 text-center border">101 - 200</td>
+    <td class="px-4 py-2 border">High Density Server Farm</td>
+    <td class="px-4 py-2 border">4 TB</td>
+    <td class="px-4 py-2 border">Multi-GPU Cluster (NVIDIA H100)</td>
+  </tr>
+  <tr data-bot="300" class="hover:bg-blue-50 cursor-pointer">
+    <td class="px-4 py-2 text-center border">201 - 300</td>
+    <td class="px-4 py-2 border">Supercomputer Node</td>
+    <td class="px-4 py-2 border">6 TB</td>
+    <td class="px-4 py-2 border">Multi-GPU Cluster (HPC Grade)</td>
+  </tr>
+  <tr data-bot="400" class="hover:bg-blue-50 cursor-pointer">
+    <td class="px-4 py-2 text-center border">301 - 400</td>
+    <td class="px-4 py-2 border">Supercomputer Cluster</td>
+    <td class="px-4 py-2 border">8 TB</td>
+    <td class="px-4 py-2 border">Multi-GPU HPC Cluster</td>
+  </tr>
+  <tr data-bot="500" class="hover:bg-blue-50 cursor-pointer">
+    <td class="px-4 py-2 text-center border">401 - 500</td>
+    <td class="px-4 py-2 border">Exascale Compute Nodes</td>
+    <td class="px-4 py-2 border">12 TB</td>
+    <td class="px-4 py-2 border">Exascale GPU Cluster</td>
+  </tr>
+  <tr data-bot="600" class="hover:bg-blue-50 cursor-pointer">
+    <td class="px-4 py-2 text-center border">501 - 600</td>
+    <td class="px-4 py-2 border">Next-Gen Exascale Nodes</td>
+    <td class="px-4 py-2 border">16 TB</td>
+    <td class="px-4 py-2 border">Next-Gen Exascale GPU Cluster</td>
+  </tr>
+  <tr data-bot="700" class="hover:bg-blue-50 cursor-pointer">
+    <td class="px-4 py-2 text-center border">601 - 700</td>
+    <td class="px-4 py-2 border">Distributed HPC Network</td>
+    <td class="px-4 py-2 border">20 TB</td>
+    <td class="px-4 py-2 border">Distributed GPU Cluster</td>
+  </tr>
+  <tr data-bot="800" class="hover:bg-blue-50 cursor-pointer">
+    <td class="px-4 py-2 text-center border">701 - 800</td>
+    <td class="px-4 py-2 border">Global HPC Infrastructure</td>
+    <td class="px-4 py-2 border">24 TB</td>
+    <td class="px-4 py-2 border">Global Multi-GPU Cluster</td>
+  </tr>
+  <tr data-bot="900" class="hover:bg-blue-50 cursor-pointer">
+    <td class="px-4 py-2 text-center border">801 - 900</td>
+    <td class="px-4 py-2 border">Planet-Scale Compute Farm</td>
+    <td class="px-4 py-2 border">30 TB</td>
+    <td class="px-4 py-2 border">Planet-Scale GPU Cluster</td>
+  </tr>
+  <tr data-bot="1000" class="hover:bg-blue-50 cursor-pointer">
+    <td class="px-4 py-2 text-center border">901 - 1000</td>
+    <td class="px-4 py-2 border">Quantum-Class Supercomputer</td>
+    <td class="px-4 py-2 border">40 TB+</td>
+    <td class="px-4 py-2 border">Quantum GPU Hybrid Cluster</td>
+  </tr>
+</tbody>
+
+        </table>
+        <p class="text-sm mt-2 text-gray-600 italic">💡 Bấm vào dòng để tự điền số bot tương ứng.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    const eventSource = new EventSource('/events');
+    const statusList = document.getElementById('statusList');
+    const botStatus = {};
+
+    eventSource.onmessage = function(event) {
+      const data = JSON.parse(event.data);
+      botStatus[data.bot] = data.status;
+
+      statusList.innerHTML = '';
+      Object.keys(botStatus).forEach(botNum => {
+        const li = document.createElement('li');
+        li.textContent = `🤖 Bot ${botNum}: ${botStatus[botNum]}`;
+        statusList.appendChild(li);
+      });
+    };
+
+    eventSource.onerror = function(err) {
+      console.error("EventSource failed:", err);
+      eventSource.close();
+    };
+
+    // Tự động điền số bot khi click dòng gợi ý
+    document.querySelectorAll('#configTable tbody tr').forEach(row => {
+      row.addEventListener('click', () => {
+        const botCount = row.getAttribute('data-bot');
+        document.getElementById('count').value = botCount;
+        document.getElementById('layout').value = 'grid';
+      });
+    });
+  </script>
+  <!-- HTML: phần footer bản quyền -->
+<footer class="footer-copyright">
+  © 2025 KHANHPC. Mọi quyền được bảo lưu.
+</footer>
+
+<style>
+  /* CSS phần bản quyền footer */
+  .footer-copyright {
+    width: 100%;
+    padding: 12px 0;
+    background-color: #1e1e2f; /* màu nền tối, bạn có thể thay đổi */
+    color: #f0f0f0;           /* màu chữ sáng, dễ đọc */
+    text-align: center;        /* căn giữa chữ */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    border-radius: 10px;
+    box-shadow: inset 0 1px 5px rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 10;
+  }
+  
+  /* Hiệu ứng hover đổi màu chữ */
+  .footer-copyright:hover {
+    color: #ffae42; /* vàng cam khi hover */
+    cursor: default;
+    transition: color 0.3s ease;
+  }
+</style>
+
+</body>
+</html>
